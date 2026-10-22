@@ -151,7 +151,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c8a024a8061574cad79ee777986bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Case
-  caseValue: 0
+  caseValue: 3
+  identity:
+    caseType: 2
+    effectValue: 3
+    color: {r: 0, g: 0.8477471, b: 1, a: 1}
+  specialvalue: 0
+  NextID: 04000000
 --- !u!65 &79293940
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -277,7 +283,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c8a024a8061574cad79ee777986bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Case
-  caseValue: 0
+  caseValue: 5
+  identity:
+    caseType: 0
+    effectValue: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+  specialvalue: 0
+  NextID: 06000000
 --- !u!65 &85483390
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -858,7 +870,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c8a024a8061574cad79ee777986bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Case
-  caseValue: 0
+  caseValue: 13
+  identity:
+    caseType: 0
+    effectValue: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+  specialvalue: 0
+  NextID: 00000000
 --- !u!65 &691416754
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -984,7 +1002,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c8a024a8061574cad79ee777986bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Case
-  caseValue: 0
+  caseValue: 6
+  identity:
+    caseType: 0
+    effectValue: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+  specialvalue: 0
+  NextID: 07000000
 --- !u!65 &694920840
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1114,7 +1138,12 @@ MonoBehaviour:
   dice: {fileID: 1755033159}
   rollValue: 0
   Mc: {fileID: 1755033158}
-  rb: {fileID: 0}
+  goalCase: 0
+  playerDatas: {fileID: 11400000, guid: f65a8a6382789c64b93e02954529c033, type: 2}
+  playerStruct:
+    Money: 0
+    currentCase: 0
+    inventory: 
 --- !u!135 &701429950
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1240,7 +1269,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c8a024a8061574cad79ee777986bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Case
-  caseValue: 0
+  caseValue: 10
+  identity:
+    caseType: 0
+    effectValue: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+  specialvalue: 0
+  NextID: 0b000000
 --- !u!65 &706421246
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1366,7 +1401,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c8a024a8061574cad79ee777986bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Case
-  caseValue: 0
+  caseValue: 9
+  identity:
+    caseType: 0
+    effectValue: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+  specialvalue: 0
+  NextID: 0a000000
 --- !u!65 &742396902
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1678,7 +1719,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c8a024a8061574cad79ee777986bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Case
-  caseValue: 0
+  caseValue: 8
+  identity:
+    caseType: 0
+    effectValue: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+  specialvalue: 0
+  NextID: 09000000
 --- !u!65 &874244980
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1804,7 +1851,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c8a024a8061574cad79ee777986bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Case
-  caseValue: 0
+  caseValue: 1
+  identity:
+    caseType: 0
+    effectValue: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+  specialvalue: 0
+  NextID: 02000000
 --- !u!65 &926312118
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1931,6 +1984,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Case
   caseValue: 0
+  identity:
+    caseType: 0
+    effectValue: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+  specialvalue: 0
+  NextID: 01000000
 --- !u!65 &1121362258
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2056,7 +2115,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c8a024a8061574cad79ee777986bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Case
-  caseValue: 0
+  caseValue: 7
+  identity:
+    caseType: 0
+    effectValue: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+  specialvalue: 0
+  NextID: 08000000
 --- !u!65 &1212437640
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2182,7 +2247,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c8a024a8061574cad79ee777986bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Case
-  caseValue: 0
+  caseValue: 11
+  identity:
+    caseType: 0
+    effectValue: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+  specialvalue: 0
+  NextID: 0c000000
 --- !u!65 &1596448063
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2334,7 +2405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dice
   value: 1
-  diceLenght: 12
+  diceLenght: 4
 --- !u!4 &1755033160
 Transform:
   m_ObjectHideFlags: 0
@@ -2382,7 +2453,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c8a024a8061574cad79ee777986bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Case
-  caseValue: 0
+  caseValue: 4
+  identity:
+    caseType: 0
+    effectValue: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+  specialvalue: 0
+  NextID: 05000000
 --- !u!65 &1848861912
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2508,7 +2585,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c8a024a8061574cad79ee777986bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Case
-  caseValue: 0
+  caseValue: 2
+  identity:
+    caseType: 1
+    effectValue: 3
+    color: {r: 1, g: 0, b: 0, a: 1}
+  specialvalue: 0
+  NextID: 03000000
 --- !u!65 &1880237175
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2767,7 +2850,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19c8a024a8061574cad79ee777986bf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Case
-  caseValue: 0
+  caseValue: 12
+  identity:
+    caseType: 0
+    effectValue: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
+  specialvalue: 0
+  NextID: 0d000000
 --- !u!65 &2075189887
 BoxCollider:
   m_ObjectHideFlags: 0

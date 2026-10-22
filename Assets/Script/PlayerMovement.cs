@@ -2,21 +2,34 @@ using System;
 
 using System.Collections;
 using UnityEngine;
+using static UnityEditor.FilePathAttribute;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public int currentCase = 1;
+    public int currentCase = 0;
     public Dice dice;
     public int rollValue = 0;
     public ManagerCircuit Mc;
     Vector3 locOffset = new Vector3(0f, 1.5f, 0f);
-    [SerializeField] Rigidbody rb;
+    private bool isMoving = false;
+    public int goalCase = 0;
+    [SerializeField] SO_PlayerDatas playerDatas;
+    public PlayerStruct playerStruct;
+
+    private void OnEnable()
+    {
+        Mc.SpecialMove += MoveAuto;
+    }
+    private void OnDisable()
+    {
+        Mc.SpecialMove -= MoveAuto;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-        transform.position = Mc.circuit[0].transform.position + locOffset;
-        currentCase = 1;
+        playerStruct = playerDatas.playerStruct;
+        MoveToSpecific(currentCase);
     }
 
     // Update is called once per frame
@@ -25,65 +38,68 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    public void Move()
+    
+    public void MoveToSpecific(int caseId)
     {
-      
-       rollValue = dice.RollDice();
-        Debug.Log(rollValue);
-        int location = currentCase + rollValue;
-        
-        StartCoroutine(MoveAnim(location));
-
-
+        Case target = Mc.GetCase(caseId);
+        if (target == null)
+        {
+            Debug.LogWarning($"Aucune case avec l'id {caseId}");
+            return;
+        }
+        transform.position = target.transform.position + locOffset;
+        currentCase = caseId;
+        playerStruct.currentCase = caseId;
     }
 
-    public IEnumerator MoveAnim(int location)
+    public void Move()
     {
-        
-        for (int i = currentCase; i < location; i++)
+        if (isMoving) return;
+        rollValue = dice.RollDice();
+        Debug.Log(rollValue);
+        StartCoroutine(MoveAnim(rollValue, true));
+    }
+
+    public void MoveAuto(int value)
+    {
+        if (isMoving) return;
+        // false = on ne relance pas l'effet de la case d'arrivée (évite les boucles infinies)
+        StartCoroutine(MoveAnim(value, false));
+    }
+
+    public IEnumerator MoveAnim(int steps, bool checkEffect)
+    {
+        isMoving = true;
+        bool forward = steps > 0;
+
+        for (int i = 0; i < Mathf.Abs(steps); i++)
         {
-            if (i == Mc.circuit.Count)
-            {
-                Vector3 position = transform.position;
-                location = 0 + (location - i);
-                
-                i = 0;
-                float duration = 0.2f;
-                float elapsedTime = 0f;
-                
-                while (elapsedTime < duration)
-                {
-                    
-                    elapsedTime += Time.deltaTime;  
-                    transform.position = Vector3.Lerp(position, Mc.circuit[i].transform.position + locOffset, elapsedTime);
-                    yield return new WaitForEndOfFrame();
-                }
-               
+            Case next = forward ? Mc.GetNextCase(currentCase)
+                                : Mc.GetPreviousCase(currentCase);
+            if (next == null) break;   // fin du circuit
 
-            }
-            else
-            {
-                Vector3 position = transform.position;
-                float t = 0f;
-                float duration = 0.25f;
-                Vector3 locOffset = new Vector3(0f, 1.5f, 0f);
-                float elapsedTime = 0f;
-                Debug.Log(i);
-                while (elapsedTime < duration)
-                {
-                    
-                    
-                    
-                    transform.position = Vector3.Lerp(position, Mc.circuit[i].transform.position + locOffset, elapsedTime / duration);
-                    elapsedTime += Time.deltaTime;
-                    yield return new WaitForEndOfFrame();
-                }
+            Vector3 start = transform.position;
+            Vector3 end = next.transform.position + locOffset;
+            float elapsed = 0f;
+            const float duration = 0.25f;
 
+            while (elapsed < duration)
+            {
+                transform.position = Vector3.Lerp(start, end, elapsed / duration);
+                elapsed += Time.deltaTime;
+                yield return null;
             }
-            yield return new WaitForSeconds(0.5f);
+            transform.position = end;
+
+            currentCase = next.caseValue;
+            playerStruct.currentCase = currentCase;
+
+            yield return new WaitForSeconds(0.2f);
         }
 
-        currentCase = location;
-        
+        isMoving = false;
+
+        if (checkEffect)
+            Mc.SpecialCheck(Mc.GetCase(currentCase));
     }
 }
