@@ -1,5 +1,5 @@
 # RiskItAll
-
+Mattéo Kazandjian
 Note d’intention : Risk it all 
 	-Structure proche de loop hero
 	-Gros risk reward 
