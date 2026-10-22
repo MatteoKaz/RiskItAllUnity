@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public ManagerCircuit Mc;
     Vector3 locOffset = new Vector3(0f, 0.7f, 0f);
     private bool isMoving = false;
-    public int goalCase = 0;
+    
     [SerializeField] SO_PlayerDatas playerDatas;
     public PlayerStruct playerStruct;
 
@@ -83,25 +83,25 @@ public class PlayerMovement : MonoBehaviour
 
         for (int i = 0; i < Mathf.Abs(steps); i++)
         {
-            Case next;
+            Case nextCase;
             if (forward)
             {
-                next = Mc.GetNextCase(currentCase);
+                nextCase = Mc.GetNextCase(currentCase);
             }
                 
             else
             {
-                next = Mc.GetPreviousCase(currentCase);
+                nextCase = Mc.GetPreviousCase(currentCase);
             }
                 
-            if (next == null)
+            if (nextCase == null)
             {
                 break;  
             }
               
 
             Vector3 start = transform.position;
-            Vector3 end = next.transform.position + locOffset;
+            Vector3 end = nextCase.transform.position + locOffset;
             float elapsed = 0f;
             const float duration = 0.25f;
 
@@ -113,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
             }
             transform.position = end;
 
-            currentCase = next.caseValue;
+            currentCase = nextCase.caseValue;
             playerStruct.currentCase = currentCase;
             playerDatas.playerStruct.currentCase = currentCase;
 

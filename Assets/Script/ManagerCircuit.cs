@@ -81,7 +81,7 @@ public class ManagerCircuit : MonoBehaviour
                 MoneyAdd(value);
                 break;
             case CaseType.MalusMoney:
-                RemoveMoney(value);
+                Remove_Money(value);
                 break;
 
         }
@@ -97,7 +97,7 @@ public class ManagerCircuit : MonoBehaviour
     {
         AddMoney?.Invoke(value);
     }
-    public void RemoveAdd(int value)
+    public void Remove_Money(int value)
     {
         RemoveMoney?.Invoke(value);
     }
