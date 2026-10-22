@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af33083b0bb228b49acec1568a512a25, type: 3}
   m_Name: SO_PlayerDatas
   m_EditorClassIdentifier: Assembly-CSharp::SO_PlayerDatas
+  playerStruct:
+    Money: 30
+    currentCase: 10
+    inventory: 

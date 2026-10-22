@@ -5,7 +5,7 @@ public class Case : MonoBehaviour
 {
     public int caseValue = 0;
     [SerializeField] public CaseIdentities identity;
-    public int specialvalue = 0;  
+    private int specialvalue = 0;  
     private Material material;
     [SerializeField] public int[] NextID; 
 
