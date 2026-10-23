@@ -10,13 +10,16 @@ public class ManagerCircuit : MonoBehaviour
     public event Action<int> SpecialMove;
     public event Action<int> AddMoney;
     public event Action<int> RemoveMoney;
-    public event Action<int> Teleport;
+    public event Action<int,bool> Teleport;
 
     //Construire le dictionnaire, pour chacune des cases de ma liste je l'integre au dico et je leur donne la clé qui est la valeur de ma case
     void Awake()
     {
         foreach (var cases in circuit)
-            casesById.Add(cases.caseValue,cases);
+        {
+            casesById.Add(cases.caseValue, cases);
+        }
+            
     }
     //Obtenir la case grace à la clé 
     public Case GetCase(int id)
@@ -75,7 +78,7 @@ public class ManagerCircuit : MonoBehaviour
                 MovementSpecial(-value);
                 break;
             case CaseType.MoveToSpecificCase:
-                Teleport(value);
+                Teleport(value,true);
                 break;
             case CaseType.BonusMoney:
                 MoneyAdd(value);
@@ -103,7 +106,7 @@ public class ManagerCircuit : MonoBehaviour
     }
     public void TeleportThings(int value)
     {
-        Teleport?.Invoke(value);
+        Teleport?.Invoke(value,true);
     }
 
 }

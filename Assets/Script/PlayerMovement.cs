@@ -17,17 +17,20 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         Mc.SpecialMove += MoveAuto;
+        Mc.Teleport += MoveToSpecific;
     }
     private void OnDisable()
     {
         Mc.SpecialMove -= MoveAuto;
+        Mc.Teleport -= MoveToSpecific;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         playerStruct = playerDatas.playerStruct;
-        MoveToSpecific(currentCase);
+        currentCase = playerStruct.currentCase;
+        MoveToSpecific(currentCase, false);
     }
 
     // Update is called once per frame
@@ -40,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     /*Fonctionnement en gros je recup en fonction de l'id donnée la case en question grace à la fonction dans le ManagerCircuit puis si la case est  null je retourne la fonction sinon, je set la position à celle de la case et je set les variable 
     comme le current case et la valeur du player struct
     */
-    public void MoveToSpecific(int caseId)
+    public void MoveToSpecific(int caseId,bool special)
     {
         Case target = Mc.GetCase(caseId);
         if (target == null)
@@ -50,6 +53,9 @@ public class PlayerMovement : MonoBehaviour
         transform.position = target.transform.position + locOffset;
         currentCase = caseId;
         playerStruct.currentCase = caseId;
+
+        if (special == true)
+            StartCoroutine(DelayTp());
     }
 
     //la so moving est true je relance pas puis je lance ma fonction du dés pour avoir la valeur ensuite je lance ma coroutine de mouvement
@@ -71,7 +77,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
             
-        StartCoroutine(MoveAnim(value, false));
+        StartCoroutine(MoveAnim(value, true));
     }
     /*Ici alors Move anim prend comme arg le nombre de pas a effectuer plus un bool qui permet de desac les effets speciaux pour l'event move auto, ensuite je set moving true je sais que l'anim se lance une seule fois
     puis je verifie le sens de marche, la pour chacun des pas a faire je set case en fonction ensuite je set les loc de depart et d'arrivé puis le temps de l'anim je fais mon lerp puis je set la pos final au cas ou, ensuite je set les variable pour 
@@ -127,5 +133,12 @@ public class PlayerMovement : MonoBehaviour
             Mc.SpecialCheck(Mc.GetCase(currentCase));
         }
            
+    }
+
+    public IEnumerator DelayTp()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Mc.SpecialCheck(Mc.GetCase(currentCase));
+
     }
 }
